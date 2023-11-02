@@ -41,15 +41,13 @@ def message_handler(_, message):
     
     lst.append(msg)
     credentials = service_account.Credentials.from_service_account_file(
-    scopes=["https://www.googleapis.com/auth/cloud-platform"],filename="C:/Users/Ponlawat Hongkoed/Downloads/regal-mediator-403517-b50f4905a3e4.json"
+    scopes=[""],filename=""
     )
     client = bigquery.Client(credentials=credentials, project=credentials.project_id,)
     
     rows_to_insert = lst
     
-    # regal-mediator-403517.bn_tesing.bn_trade_stream1
-    
-    errors = client.insert_rows_json("regal-mediator-403517.bn_tesing.bn_trade_stream1", rows_to_insert)  # Make an API request.
+    errors = client.insert_rows_json("", rows_to_insert)  # Make an API request.
     if errors == []:
         print("New rows have been added.")
     else:
