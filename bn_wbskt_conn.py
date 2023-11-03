@@ -40,10 +40,10 @@ def message_handler(_, message):
     msg['m_i'] = msg.pop('M')
     
     lst.append(msg)
-    credentials = service_account.Credentials.from_service_account_file(
-    scopes=[""],filename=""
-    )
-    client = bigquery.Client(credentials=credentials, project=credentials.project_id,)
+    # credentials = service_account.Credentials.from_service_account_file(
+    # scopes=[""],filename=""
+    # )
+    client = bigquery.Client()
     
     rows_to_insert = lst
     
