@@ -98,5 +98,6 @@ ORDER  BY  dims
 1. Go to Looker Studio
 2. Add data source and set data freshness to "1 minute".
 3. Build Dashboard >> [Binance BTC Streaming Report](https://lookerstudio.google.com/reporting/be27f7b1-b62f-4f75-8682-4e4c91c7f528)
+
 ![image](https://github.com/PonlawatRocket/binance_streaming/assets/149598125/bb3a95d8-d654-4155-89d9-0298b671ad8e)
 
