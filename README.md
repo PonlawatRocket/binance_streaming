@@ -30,6 +30,9 @@ To start running pipeline, you can do step-by-step following.
 ![image](https://github.com/PonlawatRocket/binance_streaming/assets/149598125/aaec2578-62cc-4b6c-95cd-6796ab18d6d6)
 
 Data will stream in to BigQuery first layer (landing table). As of now, start creating next layer (view) to prepare data in proper format. 
+
+![image](https://github.com/PonlawatRocket/binance_streaming/assets/149598125/2ffe6788-e362-41cd-9bda-29f06677a004)
+
 ```SQL
 ### Intermediate Layer
 
