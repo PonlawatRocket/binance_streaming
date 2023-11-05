@@ -27,6 +27,7 @@ To start running pipeline, you can do step-by-step following.
 4. Run python file `python3 bnn_wbskt_conn.py`
 5. Application will ask running time to stream websocket data until stopping. Input running time in minute or 0 for running forever.
 6. add image
+![image](https://github.com/PonlawatRocket/binance_streaming/assets/149598125/8f2031ab-4b09-4e88-8d39-b7fd48dba80a)
 
 Data will stream in to BigQuery first layer (landing table). As of now, start creating next layer (view) to prepare data in proper format. 
 ```SQL
