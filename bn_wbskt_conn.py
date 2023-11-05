@@ -1,3 +1,4 @@
+
 # ---
 # jupyter:
 #   jupytext:
@@ -12,7 +13,15 @@
 #     name: python3
 # ---
 
+print("Enter your run time (minute) (0 for run forever):")
+run_time = int(input())
+run_time = run_time*60
+
 # +
+#print(run_time)
+
+# +
+# k_line_stream
 import pandas as pd
 import json
 
@@ -30,41 +39,65 @@ config_logging(logging, logging.DEBUG)
 
 def message_handler(_, message):
     
-    # Collect msg converting to DataFrame
+    # Manipulate message to JSON (payload)
     lst = []
-    
     msg = json.loads(message)
     
-    msg['event_time'] = msg.pop('E')
-    msg['t_time'] = msg.pop('T')
-    msg['m_i'] = msg.pop('M')
+    if msg['k']['x']: 
+        
+        msg['event_type'] = msg.pop('e')
+        msg['event_time'] = msg.pop('E')
+        msg['symbol'] = msg.pop('s')
+        msg['kline_desc'] = msg.pop('k')
+
+        msg['kline_desc'] = json.dumps(msg['kline_desc'])
+
+        lst.append(msg)
+        rows_to_insert = lst
+        
+        # Connect to BiqQuery 
+        client = bigquery.Client()
+        
+        # Insert JSON 
+        errors = client.insert_rows_json("regal-mediator-403517.bn_tesing.landing_bn_stream", rows_to_insert)  # Make an API request.
+        if errors == []:
+            print("New rows have been added.")
+        else:
+            print("Encountered errors while inserting rows: {}".format(errors))
     
-    lst.append(msg)
-    # credentials = service_account.Credentials.from_service_account_file(
-    # scopes=[""],filename=""
-    # )
-    client = bigquery.Client()
-    
-    rows_to_insert = lst
-    
-    errors = client.insert_rows_json("", rows_to_insert)  # Make an API request.
-    if errors == []:
-        print("New rows have been added.")
-    else:
-        print("Encountered errors while inserting rows: {}".format(errors))
-    
-    logging.info(message)
+        logging.info(message)
 
 
-def stream_to_bq():
+def insert_to_bq(run_time=run_time, symbol="btcusdt", interval="1m"):
 
     my_client = SpotWebsocketStreamClient(on_message=message_handler)
-    my_client.trade(symbol="btcusdt")
-    time.sleep(5)
-    logging.debug("closing ws connection")
-    my_client.stop()
+
+    if run_time > 0:
+        # subscribe btcusdt 1m kline
+        my_client.kline(symbol=symbol, interval=interval)
+        
+        time.sleep(run_time)
+
+        # unsubscribe btcusdt 1m kline
+        my_client.kline(
+            symbol=symbol, interval=interval, action=SpotWebsocketStreamClient.ACTION_UNSUBSCRIBE
+        )
+
+        time.sleep(5)
+
+        logging.debug("closing ws connection")
+        my_client.stop()
+    
+    elif run_time == 0:
+        
+        # subscribe btcusdt 1m kline
+        my_client.kline(symbol=symbol, interval=interval)
+    
+    else:
+        print("error for connecting")
+        my_client.stop()
 
 
 if __name__ == "__main__":
-    stream_to_bq()
-    
+    insert_to_bq()
+
