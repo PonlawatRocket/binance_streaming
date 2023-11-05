@@ -105,6 +105,7 @@ ORDER  BY  dims
 
 ## FYI
 1. It has to open vm and run forever python script to streaming all the time (use credit$). If choose run time in minute, data ingestion'll stop after that.
-2. Limitation is Looker has only 1 minute data freshness and it need to refresh Looker Dashboard while data are ingesting.
+2. As mention above, it has to run application at least 15 minutes to get all data needed to #aggregate last 15 minutes value
+3. Limitation is Looker has only 1 minute data freshness and it need to refresh Looker Dashboard while data are ingesting.
 
 Let review my coding:) and if you have any question or concerning. Please let me know. Thank you!
