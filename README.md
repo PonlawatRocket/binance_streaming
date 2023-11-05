@@ -1,12 +1,11 @@
 # binance_streaming
 
-![binance_stream (2)](https://github.com/PonlawatRocket/binance_streaming/assets/149598125/b1033e42-f91a-46d0-b602-3a365de347b2)
 # Binance Websocket Stream
 Hi! this is the easy way to start exploring about Binance Websocket Connector and build streaming dashboard
 by using public python library [binance-conector](https://github.com/binance/binance-connector-python/blob/master/README.md).
 
 First of all, this is the overview architecture.
-add image
+![binance_stream (2)](https://github.com/PonlawatRocket/binance_streaming/assets/149598125/b1033e42-f91a-46d0-b602-3a365de347b2)
 
 To start running pipeline, you can do step-by-step following.
 ## Create Service Account
