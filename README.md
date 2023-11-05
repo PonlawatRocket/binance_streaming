@@ -1,4 +1,3 @@
-# binance_streaming
 
 # Binance Websocket Stream
 Hi! this is the easy way to start exploring about Binance Websocket Connector and build streaming dashboard
@@ -104,7 +103,7 @@ ORDER  BY  dims
 
 ![image](https://github.com/PonlawatRocket/binance_streaming/assets/149598125/bb3a95d8-d654-4155-89d9-0298b671ad8e)
 
-##FYI
+## FYI
 1. It has to open vm and run forever python script to streaming all the time (use credit$). If choose run time in minute, data ingestion'll stop after that.
 2. Limitation is Looker has only 1 minute data freshness and it need to refresh Looker Dashboard while data are ingesting.
 
