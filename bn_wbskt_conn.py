@@ -101,3 +101,4 @@ def insert_to_bq(run_time=run_time, symbol="btcusdt", interval="1m"):
 if __name__ == "__main__":
     insert_to_bq()
 
+# Add some new
